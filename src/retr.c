@@ -633,6 +633,20 @@ retr_rate (wgint bytes, double secs)
   return res;
 }
 
+const char *
+retr_rate2 (wgint bytes, double secs)
+{
+  static char res[20];
+  double dlrate = calc_rate2 (bytes, secs);
+  /* Use more digits for smaller numbers (regardless of unit used),
+     e.g. "1022", "247", "12.5", "2.38".  */
+  sprintf (res, "%.*f",
+           dlrate >= 99.95 ? 0 : dlrate >= 9.995 ? 1 : 2,
+           dlrate);
+
+  return res;
+}
+
 /* Calculate the download rate and trim it as appropriate for the
    speed.  Appropriate means that if rate is greater than 1K/s,
    kilobytes are used, and if rate is greater than 1MB/s, megabytes
@@ -641,9 +655,29 @@ retr_rate (wgint bytes, double secs)
    UNITS is zero for B/s, one for KB/s, two for MB/s, and three for
    GB/s.  */
 
-double
-calc_rate (wgint bytes, double secs, int *units)
-{
+double calc_rate2 (wgint bytes, double secs) {
+  double dlrate;
+  double bibyte = 1000.0;
+ 
+  if (!opt.report_bps)
+    bibyte = 1024.0;
+
+  assert (secs >= 0);
+  assert (bytes >= 0);
+
+  if (secs == 0)
+    /* If elapsed time is exactly zero, it means we're under the
+       resolution of the timer.  This can easily happen on systems
+       that use time() for the timer.  Since the interval lies between
+       0 and the timer's resolution, assume half the resolution.  */
+    secs = ptimer_resolution () / 2.0;
+
+  dlrate = convert_to_bits (bytes) / secs;
+  return dlrate;
+
+}
+
+double calc_rate (wgint bytes, double secs, int *units) {
   double dlrate;
   double bibyte = 1000.0;
  
@@ -675,7 +709,7 @@ calc_rate (wgint bytes, double secs, int *units)
 
   return dlrate;
 }
-
+
 
 #define SUSPEND_POST_DATA do {                  \
   post_data_suspended = true;                   \

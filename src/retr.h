@@ -62,7 +62,10 @@ uerr_t retrieve_url (struct url *, const char *, char **, char **,
 uerr_t retrieve_from_file (const char *, bool, int *);
 
 const char *retr_rate (wgint, double);
+const char *retr_rate2 (wgint bytes, double secs);
 double calc_rate (wgint, double, int *);
+double calc_rate2 (wgint bytes, double secs);
+
 void printwhat (int, int);
 
 void sleep_between_retrievals (int);

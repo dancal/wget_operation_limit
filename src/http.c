@@ -2939,9 +2939,10 @@ http_loop (struct url *u, struct url *original_url, char **newloc,
   bool send_head_first = true;
   char *file_name;
   bool force_full_retrieve = false;
-  double tms_diff;
 
+  double tms_diff;
   char *req_url;
+  const char *dl_rate;
   struct timeval tms_start_timer;
   struct timeval tms_ended_timer;
 
@@ -3023,7 +3024,7 @@ http_loop (struct url *u, struct url *original_url, char **newloc,
 
       /* Get the current time string.  */
       tms = datetime_str (time (NULL));
-	  gettimeofday(&tms_start_timer , NULL);
+	  gettimeofday(&tms_start_timer);
 
       if (opt.spider && !got_head)
         logprintf (LOG_VERBOSE, _("\
@@ -3361,8 +3362,9 @@ Remote file exists.\n\n"));
       /* End of time-stamping section. */
 
       tmrate = retr_rate (hstat.rd_size, hstat.dltime);
-      total_download_time += hstat.dltime;
+	  dl_rate = retr_rate2(hstat.rd_size, hstat.dltime);
 
+      total_download_time += hstat.dltime;
       if (hstat.len == hstat.contlen)
         {
           if (*dt & RETROKF)
@@ -3384,11 +3386,12 @@ Remote file exists.\n\n"));
                          number_to_static_string (hstat.contlen),
                          hstat.local_file, count);
 
-		      gettimeofday(&tms_ended_timer , NULL);
-          	  req_url = url_string (u, URL_AUTH_HIDE_PASSWD);
-   		      tms_diff = time_diff( tms_start_timer, tms_ended_timer);
-
-			  printf("TPS\t%f\t%2d\t%s\n", tms_diff, hstat.statcode, req_url);
+				if ( opt.wait_op_time > 0 ) {
+			  		gettimeofday(&tms_ended_timer);
+    	      	 	req_url = url_string (u, URL_AUTH_HIDE_PASSWD);
+   			        tms_diff = time_diff( tms_start_timer, tms_ended_timer);
+				    printf("OK\t%2d\t%f\t%s\t%s\t%s\n", hstat.statcode, tms_diff, number_to_static_string(hstat.len), dl_rate, req_url );
+				}
 
             }
           ++numurls;
@@ -3424,12 +3427,13 @@ Remote file exists.\n\n"));
                              tms, u->url, number_to_static_string (hstat.len),
                              hstat.local_file, count);
 
-		  		  gettimeofday(&tms_ended_timer , NULL);
+				  if ( opt.wait_op_time > 0 ) {
+			  		  gettimeofday(&tms_ended_timer);
+    	      		  req_url = url_string (u, URL_AUTH_HIDE_PASSWD);
+   			          tms_diff = time_diff( tms_start_timer, tms_ended_timer);
+				    printf("OK\t%2d\t%f\t%s\t%s\t%s\n", hstat.statcode, tms_diff, number_to_static_string(hstat.len), dl_rate, req_url );
+				  }
 
-          		  req_url = url_string (u, URL_AUTH_HIDE_PASSWD);
-
-   		          tms_diff = time_diff( tms_start_timer, tms_ended_timer);
-			      printf("TPS\t%f\t%2d\t%s\n", tms_diff, hstat.statcode, req_url);
                 }
               ++numurls;
               total_downloaded_bytes += hstat.rd_size;
@@ -3449,11 +3453,13 @@ Remote file exists.\n\n"));
               logprintf (LOG_VERBOSE,
                          _("%s (%s) - Connection closed at byte %s. "),
                          tms, tmrate, number_to_static_string (hstat.len));
-		  	  gettimeofday(&tms_ended_timer , NULL);
-          	  req_url = url_string (u, URL_AUTH_HIDE_PASSWD);
-   		      tms_diff = time_diff( tms_start_timer, tms_ended_timer);
 
-			  printf("TPS\t%f\t%2d\t%s\n", tms_diff, hstat.statcode, req_url);
+				if ( opt.wait_op_time > 0 ) {
+			  		gettimeofday(&tms_ended_timer);
+    	      	 	req_url = url_string (u, URL_AUTH_HIDE_PASSWD);
+   			        tms_diff = time_diff( tms_start_timer, tms_ended_timer);
+				    printf("OK\t%2d\t%f\t%s\t%s\t%s\n", hstat.statcode, tms_diff, number_to_static_string(hstat.len), dl_rate, req_url );
+				}
 
               printwhat (count, opt.ntry);
               continue;
@@ -3480,11 +3486,12 @@ Remote file exists.\n\n"));
                          tms, tmrate, number_to_static_string (hstat.len),
                          hstat.rderrmsg);
 
-		  	  gettimeofday(&tms_ended_timer , NULL);
-          	  req_url = url_string (u, URL_AUTH_HIDE_PASSWD);
-   		      tms_diff = time_diff( tms_start_timer, tms_ended_timer);
-
-			  printf("TPS\t%f\t%2d\t%s\n", tms_diff, hstat.statcode, req_url);
+				if ( opt.wait_op_time > 0 ) {
+			  		gettimeofday(&tms_ended_timer);
+    	      	 	req_url = url_string (u, URL_AUTH_HIDE_PASSWD);
+   			        tms_diff = time_diff( tms_start_timer, tms_ended_timer);
+				    printf("ERR\t%2d\t%f\t%s\t%s\t%s\n", hstat.statcode, tms_diff, number_to_static_string(hstat.len), dl_rate, req_url );
+				}
 
               printwhat (count, opt.ntry);
               continue;
@@ -3497,11 +3504,13 @@ Remote file exists.\n\n"));
                          number_to_static_string (hstat.len),
                          number_to_static_string (hstat.contlen),
                          hstat.rderrmsg);
-		  	  gettimeofday(&tms_ended_timer , NULL);
-          	  req_url = url_string (u, URL_AUTH_HIDE_PASSWD);
-   		      tms_diff = time_diff( tms_start_timer, tms_ended_timer);
 
-			  printf("TPS\t%f\t%2d\t%s\n", tms_diff, hstat.statcode, req_url);
+				if ( opt.wait_op_time > 0 ) {
+			  		gettimeofday(&tms_ended_timer);
+    	      	 	req_url = url_string (u, URL_AUTH_HIDE_PASSWD);
+   			        tms_diff = time_diff( tms_start_timer, tms_ended_timer);
+				    printf("ERR\t%2d\t%f\t%s\t%s\t%s\n", hstat.statcode, tms_diff, number_to_static_string(hstat.len), dl_rate, req_url );
+				}
 
               printwhat (count, opt.ntry);
               continue;

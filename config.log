@@ -473,11 +473,11 @@ configure:8594: checking lex output file root
 configure:8608: result: lex.yy
 configure:8613: checking lex library
 configure:8627: gcc -o conftest    conftest.c   >&5
-/tmp/ccaIEap8.o: In function `yylex':
+/tmp/ccabVJKb.o: In function `yylex':
 conftest.c:(.text+0x658): undefined reference to `yywrap'
-/tmp/ccaIEap8.o: In function `input':
+/tmp/ccabVJKb.o: In function `input':
 conftest.c:(.text+0xe63): undefined reference to `yywrap'
-/tmp/ccaIEap8.o: In function `main':
+/tmp/ccabVJKb.o: In function `main':
 conftest.c:(.text+0x142e): undefined reference to `yywrap'
 collect2: ld returned 1 exit status
 configure:8627: $? = 1
@@ -3729,7 +3729,7 @@ configure:10649: $? = 0
 configure:10649: result: yes
 configure:10649: checking for _set_invalid_parameter_handler
 configure:10649: gcc -o conftest  -O2 -Wall   conftest.c  >&5
-/tmp/ccWDmqMK.o: In function `main':
+/tmp/ccYJz8da.o: In function `main':
 conftest.c:(.text+0x7): undefined reference to `_set_invalid_parameter_handler'
 collect2: ld returned 1 exit status
 configure:10649: $? = 1
@@ -3893,7 +3893,7 @@ configure:10649: $? = 0
 configure:10649: result: yes
 configure:10649: checking for futimens
 configure:10649: gcc -o conftest  -O2 -Wall   conftest.c  >&5
-/tmp/ccOz93Ca.o: In function `main':
+/tmp/cc26W22c.o: In function `main':
 conftest.c:(.text+0x7): undefined reference to `futimens'
 collect2: ld returned 1 exit status
 configure:10649: $? = 1
@@ -4075,7 +4075,7 @@ configure:10649: $? = 0
 configure:10649: result: yes
 configure:10649: checking for nanotime
 configure:10649: gcc -o conftest  -O2 -Wall   conftest.c  >&5
-/tmp/ccwXOA88.o: In function `main':
+/tmp/ccWEKuW4.o: In function `main':
 conftest.c:(.text+0x7): undefined reference to `nanotime'
 collect2: ld returned 1 exit status
 configure:10649: $? = 1
@@ -4263,7 +4263,7 @@ configure:10649: $? = 0
 configure:10649: result: yes
 configure:10649: checking for pipe2
 configure:10649: gcc -o conftest  -O2 -Wall   conftest.c  >&5
-/tmp/ccEg7u2N.o: In function `main':
+/tmp/ccQ9NM6P.o: In function `main':
 conftest.c:(.text+0x7): undefined reference to `pipe2'
 collect2: ld returned 1 exit status
 configure:10649: $? = 1
@@ -4491,7 +4491,7 @@ configure:10649: $? = 0
 configure:10649: result: yes
 configure:10649: checking for utimensat
 configure:10649: gcc -o conftest  -O2 -Wall   conftest.c  >&5
-/tmp/ccMBJxq4.o: In function `main':
+/tmp/cc4JPaei.o: In function `main':
 conftest.c:(.text+0x7): undefined reference to `utimensat'
 collect2: ld returned 1 exit status
 configure:10649: $? = 1
@@ -4857,7 +4857,7 @@ configure: failed program was:
 configure:10649: result: no
 configure:10649: checking for vasnprintf
 configure:10649: gcc -o conftest  -O2 -Wall   conftest.c  >&5
-/tmp/ccm8kjOi.o: In function `main':
+/tmp/ccgpMudu.o: In function `main':
 conftest.c:(.text+0x7): undefined reference to `vasnprintf'
 collect2: ld returned 1 exit status
 configure:10649: $? = 1
@@ -6892,7 +6892,7 @@ configure:14790: gcc -o conftest  -O2 -Wall   conftest.c  >&5
 conftest.c: In function 'main':
 conftest.c:192: warning: null argument where non-null required (argument 1)
 conftest.c:193: warning: null argument where non-null required (argument 1)
-/tmp/ccmPCV8l.o: In function `main':
+/tmp/ccwOv6NS.o: In function `main':
 conftest.c:(.text+0xe): undefined reference to `pthread_mutexattr_init'
 collect2: ld returned 1 exit status
 configure:14790: $? = 1
@@ -8797,7 +8797,7 @@ configure:20596: $? = 0
 configure:20608: result: yes
 configure:20663: checking for library containing clock_gettime
 configure:20694: gcc -o conftest  -O2 -Wall   conftest.c  >&5
-/tmp/ccyHPw4M.o: In function `main':
+/tmp/cc08mr7q.o: In function `main':
 conftest.c:(.text+0x7): undefined reference to `clock_gettime'
 collect2: ld returned 1 exit status
 configure:20694: $? = 1
@@ -22174,7 +22174,7 @@ configure:33280: $? = 0
 configure:33280: result: yes
 configure:33280: checking for sigsetjmp
 configure:33280: gcc -o conftest  -O2 -Wall   conftest.c  >&5
-/tmp/ccquLWRd.o: In function `main':
+/tmp/ccG5dsrW.o: In function `main':
 conftest.c:(.text+0x7): undefined reference to `sigsetjmp'
 collect2: ld returned 1 exit status
 configure:33280: $? = 1
@@ -24774,7 +24774,7 @@ configure:35475: $? = 0
 configure:35475: result: yes
 configure:35519: Enabling support for IPv6.
 configure:35530: checking for makeinfo
-configure:35557: result: ${SHELL} /home/static/throughput/wget_load/bin/wget-1.14/build-aux/missing --run makeinfo
+configure:35557: result: ${SHELL} /home/static/throughput/wget_load/bin/wget_operation_limit/build-aux/missing --run makeinfo
 configure:35575: checking for perl5
 configure:35608: result: no
 configure:35575: checking for perl
@@ -24852,6 +24852,7 @@ config.status:2344: creating tests/Makefile
 config.status:2344: creating tests/WgetTest.pm
 config.status:2344: creating lib/Makefile
 config.status:2344: creating src/config.h
+config.status:2525: src/config.h is unchanged
 config.status:2604: executing depfiles commands
 config.status:2604: executing po-directories commands
 
@@ -25284,7 +25285,7 @@ ac_cv_path_mkdir=/bin/mkdir
 ac_cv_prog_AWK=gawk
 ac_cv_prog_CPP='gcc -E'
 ac_cv_prog_LEX=flex
-ac_cv_prog_MAKEINFO='${SHELL} /home/static/throughput/wget_load/bin/wget-1.14/build-aux/missing --run makeinfo'
+ac_cv_prog_MAKEINFO='${SHELL} /home/static/throughput/wget_load/bin/wget_operation_limit/build-aux/missing --run makeinfo'
 ac_cv_prog_ac_ct_AR=ar
 ac_cv_prog_ac_ct_CC=gcc
 ac_cv_prog_ac_ct_RANLIB=ranlib
@@ -25738,7 +25739,7 @@ wget_cv_proto_inet6=yes
 ## Output variables. ##
 ## ----------------- ##
 
-ACLOCAL='${SHELL} /home/static/throughput/wget_load/bin/wget-1.14/build-aux/missing --run aclocal-1.11'
+ACLOCAL='${SHELL} /home/static/throughput/wget_load/bin/wget_operation_limit/build-aux/missing --run aclocal-1.11'
 ALLOCA=''
 ALLOCA_H='alloca.h'
 AMDEPBACKSLASH='\'
@@ -25749,9 +25750,9 @@ APPLE_UNIVERSAL_BUILD='0'
 AR='ar'
 ARFLAGS='cru'
 ASM_SYMBOL_PREFIX='""'
-AUTOCONF='${SHELL} /home/static/throughput/wget_load/bin/wget-1.14/build-aux/missing --run autoconf'
-AUTOHEADER='${SHELL} /home/static/throughput/wget_load/bin/wget-1.14/build-aux/missing --run autoheader'
-AUTOMAKE='${SHELL} /home/static/throughput/wget_load/bin/wget-1.14/build-aux/missing --run automake-1.11'
+AUTOCONF='${SHELL} /home/static/throughput/wget_load/bin/wget_operation_limit/build-aux/missing --run autoconf'
+AUTOHEADER='${SHELL} /home/static/throughput/wget_load/bin/wget_operation_limit/build-aux/missing --run autoheader'
+AUTOMAKE='${SHELL} /home/static/throughput/wget_load/bin/wget_operation_limit/build-aux/missing --run automake-1.11'
 AWK='gawk'
 BITSIZEOF_PTRDIFF_T=''
 BITSIZEOF_SIG_ATOMIC_T=''
@@ -26388,7 +26389,7 @@ LTLIBOBJS=' ${LIBOBJDIR}ftp-opie$U.lo ${LIBOBJDIR}openssl$U.lo ${LIBOBJDIR}http-
 LTLIBPTH=''
 LTLIBSSL='-lssl -lcrypto -lz'
 LTLIBTHREAD=''
-MAKEINFO='${SHELL} /home/static/throughput/wget_load/bin/wget-1.14/build-aux/missing --run makeinfo'
+MAKEINFO='${SHELL} /home/static/throughput/wget_load/bin/wget_operation_limit/build-aux/missing --run makeinfo'
 MKDIR_P='/bin/mkdir -p'
 MSGFMT='/usr/bin/msgfmt'
 MSGFMT_015='/usr/bin/msgfmt'
@@ -26680,7 +26681,7 @@ host_vendor='unknown'
 htmldir='${docdir}'
 includedir='${prefix}/include'
 infodir='${datarootdir}/info'
-install_sh='${SHELL} /home/static/throughput/wget_load/bin/wget-1.14/build-aux/install-sh'
+install_sh='${SHELL} /home/static/throughput/wget_load/bin/wget_operation_limit/build-aux/install-sh'
 libdir='${exec_prefix}/lib'
 libexecdir='${exec_prefix}/libexec'
 lispdir='${datarootdir}/emacs/site-lisp'

@@ -11,7 +11,7 @@ use warnings;
 use Cwd;
 use File::Path;
 
-our $WGETPATH = "/home/static/throughput/wget_load/bin/wget-1.14/src/wget";
+our $WGETPATH = "/home/static/throughput/wget_load/bin/wget_operation_limit/src/wget";
 
 my @unexpected_downloads = ();
 
